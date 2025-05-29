@@ -1,0 +1,57 @@
+import yfinance as yf
+import numpy as np
+
+# --- Configuration ---
+ticker = "AAPL"               # 🔁 Change this to the stock symbol you want
+discount_rate = 0.10          # WACC or desired discount rate
+perpetual_growth = 0.02       # Terminal growth rate (e.g., 2%)
+
+# --- Fetch Financial Data ---
+stock = yf.Ticker(ticker)
+cashflow = stock.cashflow
+balance_sheet = stock.balance_sheet
+
+# --- Calculate Free Cash Flow (FCF) ---
+try:
+    fcf = cashflow.loc['Total Cash From Operating Activities'] - cashflow.loc['Capital Expenditures']
+    fcf = fcf[::-1]  # Reverse to chronological order
+    fcf_values = fcf.values.astype(float)
+    print("Historical Free Cash Flow (FCF):")
+    print(fcf)
+
+    # --- Estimate Average Growth Rate ---
+    growth_rate = np.mean(np.diff(fcf_values) / fcf_values[:-1])
+    print(f"\nEstimated FCF Growth Rate: {round(growth_rate * 100, 2)}%")
+
+    # --- Project 5 Years of FCF ---
+    projected_fcf = [fcf_values[-1] * (1 + growth_rate)**i for i in range(1, 6)]
+    print("\nProjected FCF (5 years):")
+    for i, val in enumerate(projected_fcf, start=1):
+        print(f"Year {i}: ${val:,.0f}")
+
+    # --- Discount Projected FCF ---
+    discounted_fcf = [fcf / (1 + discount_rate)**i for i, fcf in enumerate(projected_fcf, start=1)]
+    
+    # --- Terminal Value Calculation ---
+    terminal_value = projected_fcf[-1] * (1 + perpetual_growth) / (discount_rate - perpetual_growth)
+    terminal_value_discounted = terminal_value / (1 + discount_rate)**5
+
+    # --- Enterprise Value ---
+    enterprise_value = sum(discounted_fcf) + terminal_value_discounted
+
+    # --- Equity Value per Share ---
+    cash = balance_sheet.loc['Cash'][0]
+    debt = balance_sheet.loc['Long Term Debt'][0]
+    shares_outstanding = stock.info.get('sharesOutstanding', 0)
+
+    if shares_outstanding == 0:
+        raise ValueError("Couldn't retrieve shares outstanding.")
+
+    equity_value = enterprise_value + cash - debt
+    intrinsic_value_per_share = equity_value / shares_outstanding
+
+    # --- Final Output ---
+    print(f"\nEstimated Intrinsic Value per Share for {ticker}: ${intrinsic_value_per_share:.2f}")
+
+except Exception as e:
+    print("⚠️ Error calculating DCF:", e)
