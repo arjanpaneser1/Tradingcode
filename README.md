@@ -59,9 +59,6 @@ These projects are aimed at quant trading, summer internships, and graduate anal
 **Arjan Singh Paneser**  
 📧 arjannsp@icloud.com  
 📍 London, UK  
-🔗 [LinkedIn](https://www.linkedin.com/in/arjanpaneser)  
-🔗 [GitHub](https://github.com/arjanpaneser)
-
 ---
 
 If you're from a trading firm, hedge fund, or quant team — I would love to connect!
