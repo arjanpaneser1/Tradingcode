@@ -1,0 +1,34 @@
+import yfinance as yf
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Download historical price data
+ticker = "SPY"
+data = yf.download(ticker, start="2010-01-01", end="2023-01-01")
+
+# Calculate moving averages
+data["SMA_50"] = data["Adj Close"].rolling(window=50).mean()
+data["SMA_200"] = data["Adj Close"].rolling(window=200).mean()
+
+# Generate trading signals
+data["Signal"] = 0
+data.loc[data["SMA_50"] > data["SMA_200"], "Signal"] = 1
+data["Position"] = data["Signal"].shift(1)
+
+# Strategy returns
+data["Returns"] = data["Adj Close"].pct_change()
+data["Strategy"] = data["Position"] * data["Returns"]
+
+# Plot strategy vs market returns
+cumulative_strategy = (1 + data["Strategy"].fillna(0)).cumprod()
+cumulative_market = (1 + data["Returns"].fillna(0)).cumprod()
+
+plt.figure(figsize=(10, 5))
+plt.plot(cumulative_strategy, label="Strategy Returns")
+plt.plot(cumulative_market, label="Market Returns", alpha=0.7)
+plt.legend()
+plt.title("Moving Average Crossover Strategy vs Market")
+plt.xlabel("Date")
+plt.ylabel("Growth of $1")
+plt.grid(True)
+plt.show()
