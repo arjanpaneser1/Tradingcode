@@ -1,0 +1,29 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Simulation parameters
+initial_investment = 10000
+simulations = 1000
+days = 252  # 1 trading year
+mu = 0.08  # Expected annual return
+sigma = 0.15  # Annual volatility
+
+np.random.seed(42)
+sim_results = []
+
+# Run simulations
+for _ in range(simulations):
+    daily_returns = np.random.normal(loc=mu/days, scale=sigma/np.sqrt(days), size=days)
+    price_path = initial_investment * np.cumprod(1 + daily_returns)
+    sim_results.append(price_path)
+
+# Convert to array for plotting
+sim_array = np.array(sim_results)
+
+plt.figure(figsize=(10, 6))
+plt.plot(sim_array.T, alpha=0.05, color='blue')
+plt.title("Monte Carlo Simulation of Portfolio Value")
+plt.xlabel("Days")
+plt.ylabel("Portfolio Value")
+plt.grid(True)
+plt.show()
