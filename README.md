@@ -19,7 +19,7 @@ Welcome to my portfolio of trading, finance, and data-driven Python projects. As
 - Used 50-day and 200-day SMAs to generate buy/sell signals.
 - Compared strategy returns vs. market benchmark using cumulative performance charts.
 
-📁 https://github.com/arjanpaneser1/Tradingcode/blob/main/moving_average_crossover
+📁 https://github.com/arjanpaneser1/Tradingcode/blob/main/Moving_average_crossover
 
 ---
 
@@ -27,7 +27,7 @@ Welcome to my portfolio of trading, finance, and data-driven Python projects. As
 - Simulated 1,000 portfolio price paths to evaluate Value-at-Risk (VaR) and drawdown potential.
 - Visualized distribution of returns to understand probabilistic outcomes under market volatility.
 
-📁 https://github.com/arjanpaneser1/Tradingcode/blob/main/monte_carlo_portfolio
+📁 https://github.com/arjanpaneser1/Tradingcode/blob/main/Monte_carlo_portfolio
 
 ---
 
@@ -36,7 +36,7 @@ Welcome to my portfolio of trading, finance, and data-driven Python projects. As
 - Achieved ~71% directional accuracy on test data.
 - Applied TensorFlow, MinMax scaling, and sequential model training.
 
-📁 https://github.com/arjanpaneser1/Tradingcode/blob/main/lstm_stock_predictor
+📁 https://github.com/arjanpaneser1/Tradingcode/blob/main/Lstm_stock_predictor
 
 ---
 
