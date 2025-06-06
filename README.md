@@ -10,7 +10,7 @@ Welcome to my portfolio of trading, finance, and data-driven Python projects. As
 - Implemented in both Excel and Python for automation and flexibility.
 - **Keywords**: Valuation, Cash Flows, WACC, Terminal Growth
 
-📁 `dcf_model/apple_dcf_excel.py`
+📁 https://github.com/arjanpaneser1/Tradingcode/blob/main/Dcf_Model
 
 ---
 
@@ -19,7 +19,7 @@ Welcome to my portfolio of trading, finance, and data-driven Python projects. As
 - Used 50-day and 200-day SMAs to generate buy/sell signals.
 - Compared strategy returns vs. market benchmark using cumulative performance charts.
 
-📁 `backtest_strategy/moving_average_crossover.py`
+📁 https://github.com/arjanpaneser1/Tradingcode/blob/main/moving_average_crossover
 
 ---
 
@@ -27,7 +27,7 @@ Welcome to my portfolio of trading, finance, and data-driven Python projects. As
 - Simulated 1,000 portfolio price paths to evaluate Value-at-Risk (VaR) and drawdown potential.
 - Visualized distribution of returns to understand probabilistic outcomes under market volatility.
 
-📁 `monte_carlo_sim/monte_carlo_portfolio.py`
+📁 https://github.com/arjanpaneser1/Tradingcode/blob/main/monte_carlo_portfolio
 
 ---
 
@@ -36,7 +36,7 @@ Welcome to my portfolio of trading, finance, and data-driven Python projects. As
 - Achieved ~71% directional accuracy on test data.
 - Applied TensorFlow, MinMax scaling, and sequential model training.
 
-📁 `stock_prediction/lstm_stock_predictor.py`
+📁 https://github.com/arjanpaneser1/Tradingcode/blob/main/lstm_stock_predictor
 
 ---
 
