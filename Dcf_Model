@@ -1,0 +1,19 @@
+import pandas as pd
+
+# Forecasted EBITDA for 5 years
+ebitda = [90000, 95000, 100000, 105000, 110000]  # in millions
+wacc = 0.08  # Weighted Average Cost of Capital
+terminal_growth = 0.02  # Terminal growth rate
+years = len(ebitda)
+
+# Calculate Terminal Value
+terminal_value = ebitda[-1] * (1 + terminal_growth) / (wacc - terminal_growth)
+
+# Discount future cash flows and terminal value
+discounted_cash_flows = [ebitda[i] / ((1 + wacc) ** (i + 1)) for i in range(years)]
+discounted_cash_flows.append(terminal_value / ((1 + wacc) ** years))
+
+# Total Firm Value (Enterprise Value)
+firm_value = sum(discounted_cash_flows)
+
+print(f"Discounted Cash Flow Valuation for Apple Inc.: ${firm_value:,.2f} million")
